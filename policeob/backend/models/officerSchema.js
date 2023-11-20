@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const officerSchema = new mongoose.Schema({
   fullname: {
     type: String,
     required: true,
@@ -16,9 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["reporter", "officer"],
-    default: "reporter",
   },
 });
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("officers", officerSchema);
