@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
-const userRoute = require('./routes/user')
+const userRoute = require("./routes/user");
+const officerRoute = require("./routes/officers");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -11,8 +12,7 @@ const PORT = 3001;
 const dbConnect = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://martinmutuku1998:sb30pu40170@cluster0.khrkwlr.mongodb.net/policeobsystem",
-
+      "mongodb+srv://martinmutuku1998:sb30pu40170@cluster0.khrkwlr.mongodb.net/policeobsystem"
     );
     console.log("database connected successfully");
   } catch (err) {
@@ -28,7 +28,8 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/users",userRoute )
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/officers", officerRoute);
 
 app.listen(PORT, () => {
   dbConnect();

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { MdAccountBox } from "react-icons/md";
+import { IoLogInOutline } from "react-icons/io5";
 import { FaBars,FaTimes } from "react-icons/fa";
+import logo from "../assets/images/s5_logo.png"
 
 
 
@@ -30,20 +33,23 @@ const Header = () => {
             link:"media centre"
         },
         {id:6,
-        link:"contact"
+        link:"contact us"
         }
     ]
   return (
-    <div className="flex justify-center items-center w-full h-20 text-white bg-black fixed">
-      <div>
-        <h1></h1>
+    <section>
+    <div className="  w-full  ">
+      <div className="">
+        <img src={logo} alt="" className="w-full h-30 "/>
       </div>
-      <ul className="hidden md:flex">
+
+      <div className=" hidden md:flex items-center justify-between w-full h-20 bg-blue-700 ">
+      <ul className="hidden  md:flex">
         {
             links.map(({link,id})=>(
                 <li 
                 key={id}
-                className="px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 duration-200">
+                className=" mr-5 cursor-pointer capitalize font-medium text-white  hover:scale-105 duration-200">
                {link}
               </li>
 
@@ -52,8 +58,15 @@ const Header = () => {
   
       </ul>
 
+      <div className="flex ">
+        <span className='flex items-center text-white mx-3 cursor-pointer '> <MdAccountBox size={30} />Register</span>
+        <span className='flex items-center text-white mx-3 cursor-pointer '> <IoLogInOutline  size={30}/>Login</span>
+      </div>
+      </div>
+
+
       <div onClick={()=> setNav(!nav)}
-      className="cursor-pointer   text-gray-400 z-10 md:hidden pr-60">
+      className="cursor-pointer px-10  text-gray-400 z-10 md:hidden w-full bg-black">
 {
     nav? 
     <FaTimes size={30}/>: <FaBars size={30}/> 
@@ -77,6 +90,7 @@ const Header = () => {
       }
 
     </div>
+    </section>
   );
 };
 
