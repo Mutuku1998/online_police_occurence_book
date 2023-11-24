@@ -6,7 +6,7 @@ const Slidersection = () => {
 
   const settings = {
     fade:true,
-    speed:2000,
+    speed:1000,
     autoplaySpeed:3000,
     infinite:true,
     autoplay:true,
@@ -19,12 +19,13 @@ const Slidersection = () => {
     <div className='slider-item slider-item-01 mt-0'>
        <Container>
         <div className='slider-content'>
-            <h4 className='text-light mb-3'>
-          Huduma kwa Wote 
+            <h4 className='text-light mb-3 capitalize'>
+      Report crime online
             </h4>
-            <h1 className='text-light mb-4' >
-            CONSULTATIVE MEETING ON CORRUPTION PREVENTION IN THE PUBLIC SERVICE.</h1>
-                 <button className='btn reserve-btn mt-4'>
+            <h1 className='text-light mb-4 capitalize' >
+            online crime reporting system 
+      </h1>
+                 <button className='btn reserve-btn mt-4 text-white'>
                    Report Now
                  </button>
         </div>
@@ -37,8 +38,8 @@ const Slidersection = () => {
          Domestic violence and Gender based Violence
             </h4>
             <h1 className='text-light mb-4' >
-                 Report Criminal offices here</h1>
-                 <button className='btn reserve-btn mt-4'>
+                 Report Criminal offence here</h1>
+                 <button className='btn reserve-btn text-white mt-4'>
             Report Now
                  </button>
         </div>
@@ -52,7 +53,7 @@ const Slidersection = () => {
             </h4>
             <h1 className='text-light mb-4' >
                  Reach us for assistance</h1>
-                 <button className='btn reserve-btn mt-4'>
+                 <button className='btn reserve-btn mt-4 text-white'>
                      Report Now 
                  </button>
         </div>
