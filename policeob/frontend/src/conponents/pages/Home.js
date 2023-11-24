@@ -2,6 +2,7 @@ import React from "react";
 import { Container , Row ,Col } from 'reactstrap'
 import Slidersection from "../UI/Slidersection";
 import Report from "../UI/Report";
+
 export const Home = () => {
   return (
     <section className='p-0 hero-slider-section'>
@@ -21,7 +22,11 @@ export const Home = () => {
           </Row>
         </Container>
       </div>
+    <div className="container">
+     
+    </div>
       </section> 
+      
   );
 };
 export default Home
