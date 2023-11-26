@@ -3,6 +3,7 @@ import { MdAccountBox } from "react-icons/md";
 import { IoLogInOutline } from "react-icons/io5";
 import { FaBars,FaTimes } from "react-icons/fa";
 import logo from "../assets/images/s5_logo.png"
+import { Link } from "react-router-dom";
 
 
 
@@ -59,7 +60,7 @@ const Header = () => {
       </ul>
 
       <div className="flex ">
-        <span className='flex items-center text-white mx-3 cursor-pointer '> <MdAccountBox size={30} />Register</span>
+      <Link to="/register"> <span className='flex items-center text-white mx-3 cursor-pointer '> <MdAccountBox size={30} />Register</span> </Link> 
         <span className='flex items-center text-white mx-3 cursor-pointer '> <IoLogInOutline  size={30}/>Login</span>
       </div>
       </div>

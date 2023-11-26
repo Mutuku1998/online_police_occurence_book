@@ -2,10 +2,14 @@ import React from "react";
 import { Container , Row ,Col } from 'reactstrap'
 import Slidersection from "../UI/Slidersection";
 import Report from "../UI/Report";
+import Header from "../Header";
 import Footer from "../UI/Footer"
 export const Home = () => {
   return (
     <>
+    <section>
+    <Header />
+    </section>
     <section className='p-0 hero-slider-section'>
       <Slidersection/>
       <div className='hero-form'>
