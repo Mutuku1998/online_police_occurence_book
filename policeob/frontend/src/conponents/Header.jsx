@@ -61,7 +61,7 @@ const Header = () => {
 
       <div className="flex ">
       <Link to="/register"> <span className='flex items-center text-white mx-3 cursor-pointer '> <MdAccountBox size={30} />Register</span> </Link> 
-        <span className='flex items-center text-white mx-3 cursor-pointer '> <IoLogInOutline  size={30}/>Login</span>
+       <Link to='/login'> <span className='flex items-center text-white mx-3 cursor-pointer '> <IoLogInOutline  size={30}/>Login</span></Link>
       </div>
       </div>
 

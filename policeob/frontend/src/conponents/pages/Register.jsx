@@ -5,9 +5,9 @@ import head from "../../assets/images/s5_logo.png"
 const Register = () => {
   return (
     <section className="px-5 xl:px-0">
-        <div > 
-            <img src={head} alt="" className="h-20 w-full"/>
-        </div>
+       <div className="">
+        <img src={head} alt="" className="w-full h-30 "/>
+      </div>
       <div className="max-w-[1170px] max-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="hidden lg:block bg-blue-300 rounded-l-lg">
