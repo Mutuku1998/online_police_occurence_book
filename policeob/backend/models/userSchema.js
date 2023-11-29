@@ -19,6 +19,13 @@ const userSchema = new mongoose.Schema({
     enum: ["reporter", "officer"],
     default: "reporter",
   },
+  nationalid:{
+    type:String,
+    required:true,
+  },
+  county:{
+    type:String,
+  }
 });
 
 module.exports = mongoose.model("users", userSchema);

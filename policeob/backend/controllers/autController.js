@@ -3,66 +3,66 @@ const bcrypt = require("bcrypt");
 const User = require("../models/userSchema");
 const Officer = require("../models/officerSchema");
 
+// Constants
+const ROLES = {
+  REPORTER: "reporter",
+  OFFICER: "officer",
+};
+
 // Generate tokens
 const generateToken = (user) => {
-  return jwt.sign(
-    { id: user._id, role: user.role },
-    process.env.JWT_SECRET_KEY,
-    {
-      expiresIn: "60d",
-    }
-  );
+  const secretKey = process.env.JWT_SECRET_KEY || 'fallbacksecretkey';
+  return jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: "60d" });
 };
+
 
 // Register user
 const register = async (req, res) => {
-  const { fullname, password, role, email } = req.body;
+  const { fullname, password, role, email, county, nationalid } = req.body;
 
   try {
     let user = null;
 
-    if (role === "reporter") {
+    if (role === ROLES.REPORTER) {
       user = await User.findOne({ email });
-    } else if (role === "officer") {
+    } else if (role === ROLES.OFFICER) {
       user = await Officer.findOne({ email });
     }
 
     // Check if user exists
     if (user) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ success: false, message: "User already exists" });
     }
 
     // Hashing password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    if (role === "reporter") {
+    if (role === ROLES.REPORTER) {
       user = new User({
         fullname,
         password: hashedPassword,
         role,
         email,
+        nationalid,
+        county,
       });
-    }
-
-    if (role === "officer") {
+    } else if (role === ROLES.OFFICER) {
       user = new Officer({
         fullname,
         password: hashedPassword,
         email,
         role,
+        nationalid,
+        county,
       });
     }
 
     await user.save();
 
-    res
-      .status(200)
-      .json({ message: "User created successfully", success: true });
+    res.status(200).json({ success: true, message: "User created successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to register, try again" });
+    res.status(500).json({ success: false, message: "Failed to register, try again" });
   }
 };
 
@@ -78,38 +78,34 @@ const login = async (req, res) => {
 
     if (reporter) {
       user = reporter;
-    }
-    if (officer) {
+    } else if (officer) {
       user = officer;
     }
 
     // Checking if user exists in the database
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ success: false, message: "User not found" });
     }
 
     // Compare the password
     const isPasswordMatch = await bcrypt.compare(password, user.password);
 
     if (!isPasswordMatch) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Incorrect password or email" });
+      return res.status(400).json({ success: false, message: "Incorrect password or email" });
     }
 
     const token = generateToken(user);
 
     const { password: userPassword, role, ...rest } = user._doc;
-    res
-      .status(200)
-      .json({
-        status: true,
-        message: "Successful login",
-        token,
-        data: { ...rest },
-        role,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Successful login",
+      token,
+      data: { ...rest },
+      role,
+    });
   } catch (error) {
+
     res.status(500).json({ success: false, message: "Failed to login" });
   }
 };
