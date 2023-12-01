@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link } from 'react-router-dom'
 import img from "../../assets/images/D.jpeg"
 import head from "../../assets/images/s5_logo.png"
 const Login = () => {
+
+  const [Formdata, setFormdata] = useState({
+    email:"",
+    password:""
+  })
+  const handleInputchange= e=>{
+    setFormdata({...Formdata,[e.target.name]:e.target,value})
+  }
+  const handleSubmit = async event =>{
+    event.preventDefault()
+  }
   return (
     <section className="px-5 xl:px-0">
         <div className="hdidden md:w-full" > 
